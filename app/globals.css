@@ -118,3 +118,76 @@ main[data-theme="system"] .preference-select select {
     color: #f2eee5;
   }
 }
+
+
+/* SYSTEM theme: warm golden-orange identity (while still following OS light/dark). */
+main[data-theme="system"] {
+  --rust: #c47a24;
+  --paper: #fbf5e9;
+  --cream: #f3e7d2;
+  --line: #e7d5b8;
+  --muted: #82715d;
+  --ink: #30271d;
+  color-scheme: light;
+}
+main[data-theme="system"] .announcement { background: #3b2b1c; color: #fff4df; }
+main[data-theme="system"] .announcement span { color: #f1bd72; }
+main[data-theme="system"] .hero,
+main[data-theme="system"] .books-section { background: #f5ead8; }
+main[data-theme="system"] .benefits,
+main[data-theme="system"] footer { background: #fffaf1; }
+main[data-theme="system"] .quote-section { background: #49331e; }
+main[data-theme="system"] .primary-button,
+main[data-theme="system"] .quick-add,
+main[data-theme="system"] .toast { background: #a95f1c; }
+main[data-theme="system"] .filter-chip.active { background: #a95f1c; border-color: #a95f1c; }
+main[data-theme="system"] .category-card { background: #f0e1c9; }
+main[data-theme="system"] .category-card:hover { background: #ead5b3; border-color: #dfbd8d; }
+main[data-theme="system"] .preference-select,
+main[data-theme="system"] .preference-select select {
+  color: #4a321b;
+  background-color: #fff7e9;
+  border-color: #dfc49c;
+}
+main[data-theme="system"] .preference-select select option {
+  color: #4a321b;
+  background: #fff7e9;
+}
+@media (prefers-color-scheme: dark) {
+  main[data-theme="system"] {
+    --rust: #e6a34b;
+    --paper: #211d18;
+    --cream: #30271d;
+    --line: #4b3927;
+    --muted: #c0a987;
+    --ink: #f5ead8;
+    color-scheme: dark;
+  }
+  main[data-theme="system"] .announcement { background: #17130f; color: #f8ead4; }
+  main[data-theme="system"] .announcement span { color: #e9ad5a; }
+  main[data-theme="system"] .hero,
+  main[data-theme="system"] .books-section { background: #30261c; }
+  main[data-theme="system"] .benefits,
+  main[data-theme="system"] footer { background: #282119; }
+  main[data-theme="system"] .quote-section { background: #17130f; }
+  main[data-theme="system"] .primary-button,
+  main[data-theme="system"] .quick-add,
+  main[data-theme="system"] .toast { background: #a96520; color: #fff5e5; }
+  main[data-theme="system"] .filter-chip.active { background: #e6a34b; border-color: #e6a34b; color: #281b0f; }
+  main[data-theme="system"] .category-card { background: #392d20; color: var(--ink); }
+  main[data-theme="system"] .category-card:hover { background: #493725; }
+  main[data-theme="system"] .preference-select,
+  main[data-theme="system"] .preference-select select {
+    color: #fff0d8;
+    background-color: #35291d;
+    border-color: #74532e;
+  }
+  main[data-theme="system"] .preference-select select option {
+    color: #fff0d8;
+    background: #35291d;
+  }
+  main[data-theme="system"] .hero-copy>p,
+  main[data-theme="system"] .section-heading>p,
+  main[data-theme="system"] .benefits small,
+  main[data-theme="system"] .book-info p { color: #c0a987; }
+}
