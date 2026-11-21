@@ -55,3 +55,66 @@ main[data-theme="system"] {
 .hero-art .hero-note { color: #a39b8d; }
 .hero-copy h1 { color: var(--ink); }
 .hero-copy h1 em { color: var(--rust); }
+
+
+/* Theme picker contrast + true system-following palette */
+main[data-theme="light"] .preference-select,
+main[data-theme="light"] .preference-select select {
+  color: #28251f;
+  background-color: #f8f6f1;
+  border-color: #d8d2c7;
+  color-scheme: light;
+}
+main[data-theme="dark"] .preference-select,
+main[data-theme="dark"] .preference-select select {
+  color: #f2eee5;
+  background-color: #292721;
+  border-color: #575044;
+  color-scheme: dark;
+}
+.preference-select {
+  border-radius: 3px;
+  min-width: 88px;
+}
+.preference-select select {
+  min-width: 54px;
+  padding: 5px 17px 5px 3px;
+  border-radius: 2px;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23817b70' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+}
+.preference-select select option {
+  background: #f8f6f1;
+  color: #28251f;
+}
+main[data-theme="dark"] .preference-select select option {
+  background: #292721;
+  color: #f2eee5;
+}
+main[data-theme="system"] {
+  color-scheme: light;
+}
+main[data-theme="system"] .preference-select,
+main[data-theme="system"] .preference-select select {
+  color: #28251f;
+  background-color: #f8f6f1;
+  border-color: #d8d2c7;
+}
+@media (prefers-color-scheme: dark) {
+  main[data-theme="system"] {
+    color-scheme: dark;
+  }
+  main[data-theme="system"] .preference-select,
+  main[data-theme="system"] .preference-select select {
+    color: #f2eee5;
+    background-color: #292721;
+    border-color: #575044;
+  }
+  main[data-theme="system"] .preference-select select option {
+    background: #292721;
+    color: #f2eee5;
+  }
+}
