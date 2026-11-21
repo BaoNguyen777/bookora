@@ -18,7 +18,7 @@ const categories = ["Tất cả", "Văn học", "Kinh doanh", "Tâm lý", "Phát
 const money = (n: number) => n.toLocaleString("vi-VN") + "₫";
 
 export default function Home() {
-  const [category, setCategory] = useState("{t("Tất cả", "All")}");
+  const [category, setCategory] = useState("Tất cả");
   const [query, setQuery] = useState("");
   const [cart, setCart] = useState<Record<number, number>>({});
   const [cartOpen, setCartOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function Home() {
   const [language, setLanguage] = useState<"vi" | "en">("vi");
   const t = (vi: string, en: string) => language === "vi" ? vi : en;
   const [liked, setLiked] = useState<number[]>([]);
-  const filtered = useMemo(() => books.filter(b => (category === "{t("Tất cả", "All")}" || b.category === category) && (b.title.toLowerCase().includes(query.toLowerCase()) || b.author.toLowerCase().includes(query.toLowerCase()))), [category, query]);
+  const filtered = useMemo(() => books.filter(b => (category === "Tất cả" || b.category === category) && (b.title.toLowerCase().includes(query.toLowerCase()) || b.author.toLowerCase().includes(query.toLowerCase()))), [category, query]);
   const count = Object.values(cart).reduce((a, b) => a + b, 0);
   const total = books.reduce((sum, b) => sum + b.price * (cart[b.id] || 0), 0);
   const add = (id: number) => { setCart(c => ({ ...c, [id]: (c[id] || 0) + 1 })); setNotice("Đã thêm sách vào giỏ hàng"); setTimeout(() => setNotice(""), 1800); };
@@ -43,7 +43,7 @@ export default function Home() {
         <a href="#books">{t("Khám phá sách", "Explore books")}</a><a href="#categories">{t("Thể loại", "Categories")}</a><a href="#about">{t("Về Bookora", "About Bookora")}</a>
       </nav>
       <div className="header-actions">
-        <div className="search-box"><Search size={17}/><input value={query} onChange={e => {setQuery(e.target.value); document.getElementById("books")?.scrollIntoView({behavior:"smooth"});}} placeholder="{t("Tìm tên sách, tác giả...", "Search books, authors...")}"/></div>
+        <div className="search-box"><Search size={17}/><input value={query} onChange={e => {setQuery(e.target.value); document.getElementById("books")?.scrollIntoView({behavior:"smooth"});}} placeholder={t("Tìm tên sách, tác giả...", "Search books, authors...")}/></div>
         <button className="icon-button cart-trigger" onClick={() => setCartOpen(true)} aria-label="Giỏ hàng"><ShoppingBag size={20}/>{count > 0 && <span className="cart-count">{count}</span>}</button>
         <div className="preferences"><label className="preference-select" aria-label="Theme"><span>◐</span><select value={theme} onChange={e=>setTheme(e.target.value as "light"|"dark"|"system")}><option value="light">Sáng</option><option value="dark">Tối</option><option value="system">Hệ thống</option></select></label><label className="preference-select language-select" aria-label="Language"><span>文</span><select value={language} onChange={e=>setLanguage(e.target.value as "vi"|"en")}><option value="vi">VI</option><option value="en">EN</option></select></label></div><button className="icon-button menu-trigger" onClick={() => setMobileMenu(!mobileMenu)}><Menu/></button>
       </div>
@@ -63,10 +63,10 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="benefits"><div><Truck/><span><b>{t("Giao hàng toàn quốc", "Nationwide delivery")}</b><small>{t("Nhận sách tận nhà", "Books delivered to your door")}</small></span></div><div><BookOpen/><span><b>{t("{t("Sách", "Books")} chọn lọc", "Curated books")}</b><small>{t("Nội dung chất lượng", "Quality content")}</small></span></div><div><Heart/><span><b>{t("Đóng gói tận tâm", "Thoughtful packaging")}</b><small>{t("Trao gửi từng trang sách", "Every page, carefully packed")}</small></span></div><div><Check/><span><b>{t("Thanh toán linh hoạt", "Flexible payment")}</b><small>{t("COD & chuyển khoản", "COD & bank transfer")}</small></span></div></section>
+    <section className="benefits"><div><Truck/><span><b>{t("Giao hàng toàn quốc", "Nationwide delivery")}</b><small>{t("Nhận sách tận nhà", "Books delivered to your door")}</small></span></div><div><BookOpen/><span><b>{t("Sách chọn lọc", "Curated books")}</b><small>{t("Nội dung chất lượng", "Quality content")}</small></span></div><div><Heart/><span><b>{t("Đóng gói tận tâm", "Thoughtful packaging")}</b><small>{t("Trao gửi từng trang sách", "Every page, carefully packed")}</small></span></div><div><Check/><span><b>{t("Thanh toán linh hoạt", "Flexible payment")}</b><small>{t("COD & chuyển khoản", "COD & bank transfer")}</small></span></div></section>
 
     <section className="categories-section" id="categories"><div className="section-heading"><div><div className="eyebrow">{t("TÌM ĐIỀU BẠN QUAN TÂM", "FIND WHAT INTERESTS YOU")}</div><h2>{t("Một thế giới ", "A world ")}<em>{t("đang chờ.", "is waiting.")}</em></h2></div><p>{t("Chọn một chủ đề, bắt đầu hành trình khám phá tiếp theo của bạn.", "Choose a topic and begin your next journey of discovery.")}</p></div>
-      <div className="category-grid">{[{name:"{t("Văn học", "Literature")}",desc:"Những câu chuyện chạm đến trái tim",n:"01",emoji:"✳"},{name:"{t("Kinh doanh", "Business")}",desc:"Tư duy mới, bước tiến mới",n:"02",emoji:"↗"},{name:"{t("Tâm lý", "Psychology")}",desc:"Thấu hiểu mình và thế giới",n:"03",emoji:"◉"},{name:"{t("Phát triển bản thân", "Self-development")}",desc:"Mỗi ngày tốt hơn một chút",n:"04",emoji:"✦"},{name:"{t("Công nghệ", "Technology")}",desc:"Ý tưởng định hình tương lai",n:"05",emoji:"⌘"},{name:"{t("Lịch sử", "History")}",desc:"Lắng nghe chuyện của thời gian",n:"06",emoji:"◷"}].map(c=><button key={c.name} className="category-card" onClick={()=>{setCategory(c.name);document.getElementById("books")?.scrollIntoView({behavior:"smooth"});}}><span className="category-number">{c.n}</span><span className="category-emoji">{c.emoji}</span><b>{c.name}</b><small>{c.desc}</small><ArrowUpRight className="category-arrow" size={18}/></button>)}</div>
+      <div className="category-grid">{[{name:"Văn học",desc:"Những câu chuyện chạm đến trái tim",n:"01",emoji:"✳"},{name:"Kinh doanh",desc:"Tư duy mới, bước tiến mới",n:"02",emoji:"↗"},{name:"Tâm lý",desc:"Thấu hiểu mình và thế giới",n:"03",emoji:"◉"},{name:"Phát triển bản thân",desc:"Mỗi ngày tốt hơn một chút",n:"04",emoji:"✦"},{name:"Công nghệ",desc:"Ý tưởng định hình tương lai",n:"05",emoji:"⌘"},{name:"Lịch sử",desc:"Lắng nghe chuyện của thời gian",n:"06",emoji:"◷"}].map(c=><button key={c.name} className="category-card" onClick={()=>{setCategory(c.name);document.getElementById("books")?.scrollIntoView({behavior:"smooth"});}}><span className="category-number">{c.n}</span><span className="category-emoji">{c.emoji}</span><b>{t(c.name, ({ "Văn học":"Literature", "Kinh doanh":"Business", "Tâm lý":"Psychology", "Phát triển bản thân":"Self-development", "Công nghệ":"Technology", "Lịch sử":"History" } as Record<string,string>)[c.name])}</b><small>{c.desc}</small><ArrowUpRight className="category-arrow" size={18}/></button>)}</div>
     </section>
 
     <section className="books-section" id="books"><div className="section-heading"><div><div className="eyebrow">{t("ĐƯỢC ĐỘC GIẢ LỰA CHỌN", "READER FAVORITES")}</div><h2>{t("Những cuốn sách ", "Books ")}<em>{t("nổi bật.", "in the spotlight.")}</em></h2></div><a className="text-button" href="#books">{t("Khám phá tất cả", "Explore all")} <ArrowRight size={16}/></a></div>
