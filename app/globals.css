@@ -31,3 +31,27 @@ main[data-theme="dark"] .hero-copy>p,main[data-theme="dark"] .section-heading>p,
 @media(prefers-color-scheme:dark){main[data-theme="system"]{--ink:#eee9df;--muted:#b6afa3;--paper:#201f1c;--cream:#2b2924;--rust:#d69a7d;--line:#3b3831;color-scheme:dark}main[data-theme="system"] .announcement{background:#151412}main[data-theme="system"] .header,main[data-theme="system"] .nav{background:var(--paper)}main[data-theme="system"] .hero,main[data-theme="system"] .books-section{background:#292721}main[data-theme="system"] .benefits,main[data-theme="system"] footer{background:#26241f}main[data-theme="system"] .category-card{background:#2b2924;color:var(--ink)}main[data-theme="system"] .quote-section{background:#151412}main[data-theme="system"] .checkout-modal,main[data-theme="system"] .cart-drawer{background:var(--paper);color:var(--ink)}main[data-theme="system"] .checkout-modal input,main[data-theme="system"] .checkout-modal select{background:#2b2924;color:var(--ink);border-color:var(--line)}main[data-theme="system"] .search-box input,main[data-theme="system"] .newsletter input{color:var(--ink)}}
 @media(max-width:900px){.preferences{gap:4px}.preference-select{padding:0 5px}}
 @media(max-width:640px){.preferences{gap:3px}.preference-select{height:30px;padding:0 4px}.preference-select select{font-size:9px}.language-select{min-width:48px}}
+
+
+/* Contrast fix: theme variables must drive text/background inside the app root,
+   not only elements that explicitly reference a variable. Keep the illustrated
+   book jackets on their own fixed palette so they never blend into the theme. */
+main[data-theme="light"],
+main[data-theme="dark"] {
+  color: var(--ink);
+  background: var(--paper);
+}
+main[data-theme="system"] {
+  color: var(--ink);
+  background: var(--paper);
+}
+.hero-book.book-back { background: #52645b; color: #f7efe1; }
+.hero-book.book-front { background: #ad684e; color: #f7efe1; }
+.hero-book .book-cover-label,
+.hero-book .book-cover-title,
+.hero-book small { color: #f7efe1; }
+.hero-book .book-sun { border-color: #e7c49d; }
+.hero-art .hero-orbit { border-color: #a9a294; }
+.hero-art .hero-note { color: #a39b8d; }
+.hero-copy h1 { color: var(--ink); }
+.hero-copy h1 em { color: var(--rust); }
